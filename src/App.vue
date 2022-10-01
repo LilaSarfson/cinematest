@@ -1,18 +1,30 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-</template>
+  <script setup>
+    import data from './data/data.json'
+    import MovieSelector from './components/MovieSelector.vue'
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+  </script>
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  <script>
+  export default {
+    data(){
+      return{
+        cinemaData:data,
+        movieData:data[0].Movie
+      }
+    },
+    methods:{
+      saberCosas(){
+        console.log(this.movieData)
+    }
   }
 }
-</script>
+  </script>
+<template>
+  <MovieSelector :movieData="movieData"/>
+<button @click="saberCosas">Saber</button>
+
+</template>
+
 
 <style>
 #app {
