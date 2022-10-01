@@ -10,20 +10,25 @@
     data(){
       return{
         cinemaData:data,
-        movieData:data[0].Movie
+        movieData:data[0].Movie,
+        currentMoviePrice:0
       }
     },
     methods:{
       saberCosas(){
         console.log(this.movieData)
-    }
+      },
+    handleClick(info){
+      this.currentMoviePrice= info;
+       console.log(this.currentMoviePrice)
+   }
   }
 }
   </script>
 <template>
-  <MovieSelector :movieData="movieData"/>
+  <MovieSelector @change="handleClick" :movieData="movieData"/>
 <button @click="saberCosas">Saber</button>
-<CinemaSit/>
+<CinemaSit :currentMoviePrice="currentMoviePrice"/>
 </template>
 
 

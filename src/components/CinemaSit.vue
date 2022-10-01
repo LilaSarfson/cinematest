@@ -1,7 +1,7 @@
 <script>
     export default { 
         props:{
-            CinemaData:Object
+            currentMoviePrice:Number
         },
         data(){
       return{
@@ -18,11 +18,13 @@
     this.arrayOfPlaces[id].occupied= !this.arrayOfPlaces[id].occupied;
       if(this.arrayOfPlaces[id].occupied===false){
         this.numberSitSelected= this.numberSitSelected-1;
+        this.totalPrice= this.totalPrice-this.currentMoviePrice
       }
       else{
         this.numberSitSelected= this.numberSitSelected+1;
+        this.totalPrice=this.totalPrice + this.currentMoviePrice;
       }
-
+      
      }
   }
 }
@@ -30,7 +32,7 @@
     <template>
     <div v-for="place in arrayOfPlaces" :key="place.id" @click="takeSit(place.id)" :class="(place.occupied) ? 'ocupado':'libre'" class="sitio">
     </div>
-    <p>You have selected {{numberSitSelected}} seats for a price of </p>
+    <p>You have selected {{numberSitSelected}} seats for a price of {{totalPrice}}</p>
     </template>
 
     <style scoped>

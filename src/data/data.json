@@ -4,27 +4,27 @@
            {
               "id":"1",
               "Name":"Walley",
-              "TicketPrice":"16$"
+              "TicketPrice":16
            },
            {
               "id":"2",
               "Name":"Inside Out",
-              "TicketPrice":"10$"
+              "TicketPrice":10
            },
            {
             "id":"3",
             "Name":"Lord of the Rings",
-            "TicketPrice":"20$"
+            "TicketPrice":20
          },
          {
             "id":"4",
             "Name":"Truman's Show",
-            "TicketPrice":"19$"
+            "TicketPrice":19
          },
          {
             "id":"5",
             "Name":"Avatar",
-            "TicketPrice":"17$"
+            "TicketPrice":17
          }
         ],
         "Asientos-totales":48,

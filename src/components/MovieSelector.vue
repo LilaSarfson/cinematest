@@ -9,14 +9,16 @@
       }
     },
     methods:{
-     
+     handleClick(){
+      this.$emit('change', this.selected)
+     }
   }
 }
 </script>
     <template>
     <label>Pick a movie</label>
-    <select v-model="selected">
-    <option  v-for="data in movieData" :key="data.id">{{`${data.Name} (${data.TicketPrice})`}}</option>
+    <select @change="handleClick" v-model="selected">
+    <option v-for="data in movieData" :key="data.id" :value="data.TicketPrice">{{`${data.Name} (${data.TicketPrice}$)`}}</option>
     </select>
     <p>Movie selected: {{selected}}</p>
 
