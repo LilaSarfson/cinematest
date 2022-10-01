@@ -15,7 +15,7 @@
     <template>
     <label>Pick a movie</label>
     <select name="movies" id="movie"> -->
-    <option v-for="data in movieData" :key="data.No" value="">{{data.Name}}</option>
+    <option v-for="data in movieData" :key="data.id" value="">{{`${data.Name} (${data.TicketPrice})`}}</option>
     </select>
 
     </template>

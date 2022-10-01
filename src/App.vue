@@ -1,6 +1,7 @@
   <script setup>
     import data from './data/data.json'
     import MovieSelector from './components/MovieSelector.vue'
+    import CinemaSit from './components/CinemaSit.vue'
 
   </script>
 
@@ -22,7 +23,7 @@
 <template>
   <MovieSelector :movieData="movieData"/>
 <button @click="saberCosas">Saber</button>
-
+<CinemaSit/>
 </template>
 
 
