@@ -7,10 +7,8 @@
       return{
         totalPrice:0,
         numberSitSelected:0,
-        arrayOfPlaces:[{id:0, occupied:false} ,
-        {id:1,
-        occupied:false}
-        ]
+        arrayOfPlaces:[
+          {id:0, occupied:false} ,{id:1,occupied:false},{id:2,occupied:false},{id:3,occupied:false},{id:4,occupied:false},{id:5,occupied:false},{id:6,occupied:false},{id:7,occupied:false},{id:8,occupied:false},{id:9,occupied:false},{id:10,occupied:false},{id:11,occupied:false},{id:12,occupied:false}]
       }
     },
     watch:{
@@ -38,9 +36,11 @@
 }
 </script>
     <template>
-    <div v-for="place in arrayOfPlaces" :key="place.id" @click="takeSit(place.id)" :class="(place.occupied) ? 'ocupado':'libre'" class="sitio">
+    <div class="grid grid-cols-2 gap-1">
+      <div v-for="place in arrayOfPlaces" :key="place.id" @click="takeSit(place.id)" :class="(place.occupied) ? 'bg-blueSpace':'bg-seat'" class="sitio">
+      </div>
     </div>
-    <p>You have selected {{numberSitSelected}} seats for a price of {{totalPrice}}</p>
+    <p class="text-blue-600 text-lg">You have selected {{numberSitSelected}} seats for a price of {{totalPrice}}</p>
     </template>
 
     <style scoped>
@@ -48,11 +48,5 @@
         width: 50px;
         height: 50px;
         border: 1px black solid;
-      }
-      .ocupado{
-        background-color: red;
-      }
-      .libre{
-        background-color: blue;
       }
     </style>
