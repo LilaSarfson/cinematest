@@ -27,10 +27,9 @@
 }
   </script>
   <template>
-    <div>
+    <div class="flex flex-col items-center gap-2">
       <MovieSelector @change="handleClick" :movieData="movieData"/>
-      <div class="h-lgCinema w-full bg-white-cinema"></div>
-      <button @click="saberCosas">Saber</button>
+      <div class="h-lgCinema w-full bg-white-cinema my-3.5 rotate-x-45 shadow-lg shadow-white-cinema-500/50"></div>
       <CinemaSit :currentMoviePrice="currentMoviePrice"/>
     </div>
   </template>

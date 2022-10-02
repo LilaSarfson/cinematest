@@ -8,7 +8,7 @@
         totalPrice:0,
         numberSitSelected:0,
         arrayOfPlaces:[
-          {id:0, occupied:false} ,{id:1,occupied:false},{id:2,occupied:false},{id:3,occupied:false},{id:4,occupied:false},{id:5,occupied:false},{id:6,occupied:false},{id:7,occupied:false},{id:8,occupied:false},{id:9,occupied:false},{id:10,occupied:false},{id:11,occupied:false},{id:12,occupied:false}]
+          {id:0, occupied:false} ,{id:1,occupied:false},{id:2,occupied:false},{id:3,occupied:false},{id:4,occupied:false},{id:5,occupied:false},{id:6,occupied:false},{id:7,occupied:false},{id:8,occupied:false},{id:9,occupied:false},{id:10,occupied:false},{id:11,occupied:false}]
       }
     },
     watch:{
@@ -36,17 +36,18 @@
 }
 </script>
     <template>
-    <div class="grid grid-cols-2 gap-1">
-      <div v-for="place in arrayOfPlaces" :key="place.id" @click="takeSit(place.id)" :class="(place.occupied) ? 'bg-blueSpace':'bg-seat'" class="sitio">
+    <div class="grid grid-cols-2 gap-2 items-start">
+      <div v-for="place in arrayOfPlaces" :key="place.id" @click="takeSit(place.id)" :class="(place.occupied) ? 'bg-blueSpace':'bg-seat'" class="h-smallseat w-4 rounded-t-xl">
       </div>
+      
     </div>
-    <p class="text-blue-600 text-lg">You have selected {{numberSitSelected}} seats for a price of {{totalPrice}}</p>
+    <p class="text-blue-600 text-lg">You have selected <span class="text-blueSpace">{{numberSitSelected}}</span> seats for a price of $<span class="text-blueSpace">{{totalPrice}}</span></p>
     </template>
 
-    <style scoped>
+    <!-- <style scoped>
       .sitio{
         width: 50px;
         height: 50px;
         border: 1px black solid;
       }
-    </style>
+    </style> -->
