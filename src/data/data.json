@@ -56,9 +56,34 @@
          {"id":20,"occupied":false, "selected":false},
          {"id":21,"occupied":false, "selected":false},
          {"id":22,"occupied":false, "selected":false},
-         {"id":23,"occupied":false, "selected":false}
+         {"id":23,"occupied":false, "selected":false},
+         {"id":24,"occupied":false, "selected":false},
+         {"id":25,"occupied":false, "selected":false},
+         {"id":26,"occupied":false, "selected":false},
+         {"id":27,"occupied":true, "selected":false},
+         {"id":28,"occupied":true, "selected":false},
+         {"id":29,"occupied":false, "selected":false},
+         {"id":30,"occupied":false, "selected":false},
+         {"id":31,"occupied":true, "selected":false},
+         {"id":32,"occupied":false, "selected":false},
+         {"id":33,"occupied":false, "selected":false},
+         {"id":34,"occupied":false, "selected":false},
+         {"id":35,"occupied":false, "selected":false},
+         {"id":36,"occupied":false, "selected":false},
+         {"id":37,"occupied":false, "selected":false},
+         {"id":38,"occupied":false, "selected":false},
+         {"id":39,"occupied":false, "selected":false},
+         {"id":40,"occupied":false, "selected":false},
+         {"id":41,"occupied":true, "selected":false},
+         {"id":42,"occupied":false, "selected":false},
+         {"id":43,"occupied":false, "selected":false},
+         {"id":44,"occupied":false, "selected":false},
+         {"id":45,"occupied":false, "selected":false},
+         {"id":46,"occupied":false, "selected":false},
+         {"id":47,"occupied":false, "selected":false},
+         {"id":48,"occupied":false, "selected":false}
       ],
-        "asientosDisponibles":39
+        "asientosDisponibles":42
      }
  ]
 
