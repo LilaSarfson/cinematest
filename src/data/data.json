@@ -81,9 +81,10 @@
          {"id":45,"occupied":false, "selected":false},
          {"id":46,"occupied":false, "selected":false},
          {"id":47,"occupied":false, "selected":false},
-         {"id":48,"occupied":false, "selected":false}
+         {"id":48,"occupied":false, "selected":false},
+         {"id":49,"occupied":false, "selected":false}
       ],
-        "asientosDisponibles":42
+        "asientosDisponibles":43
      }
  ]
 

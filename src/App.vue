@@ -23,9 +23,9 @@
 }
   </script>
   <template>
-    <div class="flex flex-col items-center gap-3">
+    <div class="flex flex-col items-center gap-4">
       <MovieSelector @change="handleClick" :movieData="moviesData"/>
-      <div class="h-lgCinema w-60 bg-white-cinema my-3.5 "></div>
+      <div class="h-lgCinema w-60 bg-white-cinema my-3.5 shadow-lg shadow-3xl"></div>
       <CinemaSeat :seatsData="seatsData" :currentMoviePrice="currentMoviePrice"/>
     </div>
   </template>
