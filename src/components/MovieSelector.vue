@@ -12,7 +12,7 @@
     },
     created(){
       if(localStorage.getItem('movieSelected')!=null){
-        this.selected=JSON.parse(localStorage.getItem('movieSelected'))
+        this.selected=JSON.parse(localStorage.getItem('movieSelected'));
         this.handleClick()
       }
     },
@@ -32,7 +32,7 @@
     <template>
     <form class="flex flex-row gap-4">
       <label>Pick a movie:</label>
-      <select class="text-black rounded-md" @change="handleClick" v-model="selected">
+      <select :value="selected" class="text-black rounded-md" @change="handleClick" v-model="selected">
       <option v-for="data in movieDataprop" :value="data" :key="data.id">{{`${data.Name} (${data.TicketPrice}$)`}}</option>
       </select>
     </form>

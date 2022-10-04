@@ -1,6 +1,11 @@
 [
     {
         "Movie":[
+         {
+            "id":"0",
+            "Name":"Rambo",
+            "TicketPrice":18
+         },
            {
               "id":"1",
               "Name":"Walley",
@@ -28,7 +33,7 @@
          }
         ],
         "asientosTotales":[
-         {"id":0,"occupied":false, "selected":false} ,
+         {"id":0,"occupied":false, "selected":false},
          {"id":1,"occupied":true, "selected":false},
          {"id":2,"occupied":false, "selected":false},
          {"id":3,"occupied":false, "selected":false},
