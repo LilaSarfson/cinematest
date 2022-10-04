@@ -13,8 +13,14 @@
       }
     },
     created(){ 
-      if(localStorage.getItem('sitios')!='')
+      if(localStorage.getItem('sitios')!=null){
       this.seatsSelected=JSON.parse(localStorage.getItem('sitios'))
+      this.seatsSelected.forEach((e) => { 
+      let positioArray = e.id;
+      this.arrayOfPlaces.splice(positioArray, 1, e)
+      });
+    
+    }
     },
     watch:{
       currentMoviePrice:function() {
@@ -39,6 +45,7 @@
       {this.seatsSelected.push(this.arrayOfPlaces[id])}
     }
     this.addItemLstorage();
+    console.log(this.seatsSelected)
   },
   addItemLstorage(){
     localStorage.setItem('sitios', JSON.stringify(this.seatsSelected))

@@ -17,9 +17,6 @@
       }
     },
     methods:{
-      saberCosas(){
-        console.log(this.movieData)
-      },
     handleClick(info){
       this.currentMoviePrice= info;
        console.log(this.currentMoviePrice)
