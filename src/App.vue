@@ -2,7 +2,7 @@
   <script setup>
     import data from './data/data.json'
     import MovieSelector from './components/MovieSelector.vue'
-    import CinemaSit from './components/CinemaSit.vue'
+    import CinemaSeat from './components/CinemaSit.vue'
 
   </script>
 
@@ -12,6 +12,7 @@
       return{
         cinemaData:data,
         movieData:data[0].Movie,
+        seatsData:data[0].asientosTotales,
         currentMoviePrice:0
       }
     },
@@ -30,7 +31,7 @@
     <div class="flex flex-col items-center gap-2">
       <MovieSelector @change="handleClick" :movieData="movieData"/>
       <div class="h-lgCinema w-full bg-white-cinema my-3.5 rotate-x-45 shadow-lg shadow-white-cinema-500/50"></div>
-      <CinemaSit :currentMoviePrice="currentMoviePrice"/>
+      <CinemaSeat :seatsData="seatsData" :currentMoviePrice="currentMoviePrice"/>
     </div>
   </template>
 

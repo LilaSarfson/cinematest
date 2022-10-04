@@ -27,8 +27,20 @@
             "TicketPrice":17
          }
         ],
-        "Asientos-totales":48,
-        "Asientos-disponibles":39
+        "asientosTotales":[
+         {"id":0,"occupied":false} ,
+         {"id":1,"occupied":false},
+         {"id":2,"occupied":false},
+         {"id":3,"occupied":false},
+         {"id":4,"occupied":false},
+         {"id":5,"occupied":false},
+         {"id":6,"occupied":false},
+         {"id":7,"occupied":false},
+         {"id":8,"occupied":false},
+         {"id":9,"occupied":false},
+         {"id":10,"occupied":false},
+         {"id":11,"occupied":false}],
+        "asientosDisponibles":39
      }
  ]
 
