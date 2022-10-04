@@ -11,8 +11,9 @@
       }
     },
     created(){
-      if(localStorage.getItem('movieSelected'!=null)){
-        this.selected=localStorage.getItem('movieSelected')
+      if(localStorage.getItem('movieSelected')!=null){
+        this.selected=JSON.parse(localStorage.getItem('movieSelected'))
+        this.handleClick()
       }
     },
     methods:{
@@ -23,7 +24,7 @@
   },
   watch:{
     selected:function(){
-      localStorage.setItem('movieSelected',this.selected);
+      localStorage.setItem('movieSelected', JSON.stringify(this.selected));
     }
   },
 }

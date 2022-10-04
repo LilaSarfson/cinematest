@@ -19,12 +19,23 @@
       let positioArray = e.id;
       this.arrayOfPlaces.splice(positioArray, 1, e)
       });
-    
+      if(localStorage.getItem('Price')!=null){
+        this.totalPrice=+localStorage.getItem('Price')
+      }
+      if(localStorage.getItem('numberSeats')!=null){
+        this.numberSitSelected=+localStorage.getItem('numberSeats')
+      }
     }
     },
     watch:{
       currentMoviePrice:function() {
       this.movieChanged()},
+      totalPrice:function(){
+        localStorage.setItem('Price', JSON.stringify(this.totalPrice));
+      },
+      numberSitSelected:function(){
+        localStorage.setItem('numberSeats', JSON.stringify(this.numberSitSelected))
+      }
    },
     methods:{
       movieChanged(){
