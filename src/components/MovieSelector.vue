@@ -1,9 +1,8 @@
 <script>
     export default {
-  created(){
+    created(){
       if(localStorage.getItem('movieSelected')!=null){
         this.movieSelected=JSON.parse(localStorage.getItem('Movie'));
-        this.handleClick()
       }
     },
   watch:{
@@ -23,10 +22,16 @@
         this.$store.commit('setMovieSelected', newValue)
       }
     }  
+  },
+  methods:{
+    informacion(){
+      console.log(this.movieSelected.TicketPrice)
+    }
   }
 }
 </script>
     <template>
+      <button @click="informacion">Información</button>
     <div class="flex flex-col gap-7">
       <form class="flex flex-row gap-4">
         <label>Pick a movie:</label>
