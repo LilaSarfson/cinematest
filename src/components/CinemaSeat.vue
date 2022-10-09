@@ -1,32 +1,26 @@
 <script>
-
+import {ref, computed} from 'vue'
+import {useStore} from 'vuex'
     export default { 
-    computed:{
-      arrayOfSeats(){
-        return this.$store.state.data[0].asientosTotales
-      },
-      currentMoviePrice(){
-          return this.$store.state.movieSelected.TicketPrice
-        },
-      numberSeatSelected:{
-        get(){
-        return this.$store.state.numberSeatSelected},
-        set(newValue){
-          this.$store.commit('SetnumberSeatSelected', newValue)
-        }
-      },
-      seatsSelected:{
-        get(){
-        return this.$store.state.seatsSelected},
-        set(newValue){
-          this.$store.commit('SetseatsSelected', newValue)
-        }
-      },
-      totalPrice:{
-        get(){return this.$store.state.totalPrice},
-        set(newValue){this.$store.commit('SetTotalPrice', newValue)}
+      setup(){
+      const store = useStore(); 
+
+      let numberSeatSelected = ref(0);
+      let seatsSelected = ref(0);
+      let totalPrice = ref(0);
+
+      const arrayOfSeats = computed(()=> store.state.data[0].asientosTotales)
+      const currentMoviePrice = computed(()=> store.state.movieSelected.TicketPrice)
+      
+      return{
+        numberSeatSelected,
+        seatsSelected,
+        totalPrice,
+        arrayOfSeats,
+        currentMoviePrice
       }
-    },
+
+      },
     created(){ 
       if(localStorage.getItem('seatsLstorage')!=null){
       this.seatsSelected=JSON.parse(localStorage.getItem('seatsLstorage'))
@@ -53,9 +47,6 @@
       }
    },
     methods:{
-    informacion(){
-      console.log(this.totalPrice)
-    },
       movieChanged(){
         this.totalPrice=this.currentMoviePrice*this.numberSeatSelected
       },
@@ -85,5 +76,4 @@
       </div>
     </div>
     <p class=" text-lg">You have selected <span class="text-blueSpace">{{numberSeatSelected}}</span> seats for a price of $<span class="text-blueSpace">{{currentMoviePrice && numberSeatSelected ? totalPrice : 0}}</span></p>
-    <button @click="informacion">Información</button>
     </template>

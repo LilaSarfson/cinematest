@@ -1,5 +1,22 @@
 <script>
+import {computed} from 'vue'
+import {useStore} from 'vuex'
     export default {
+      setup(){
+        const store = useStore(); 
+
+        const moviesData = computed(()=> store.state.data[0].Movie,)
+        const movieSelected = computed({
+          get(){ return store.state.movieSelected },
+          set(newValue){store.commit('setMovieSelected', newValue)}
+        })
+
+        return{
+          moviesData,
+          movieSelected
+        }
+
+      },
     created(){
       if(localStorage.getItem('MovieSelected')!=null){
         this.movieSelected=JSON.parse(localStorage.getItem('MovieSelected'));
@@ -9,29 +26,10 @@
     movieSelected:function(){
       localStorage.setItem('MovieSelected', JSON.stringify(this.movieSelected));
     }
-  },
-  computed:{
-    moviesData(){
-        return this.$store.state.data[0].Movie
-      },
-    movieSelected:{
-      get(){
-        return this.$store.state.movieSelected
-      },
-      set(newValue){
-        this.$store.commit('setMovieSelected', newValue)
-      }
-    }
-  },
-  methods:{
-    informacion(){
-      console.log(this.currentMoviePrice)
-    }
   }
 }
 </script>
     <template>
-      <button @click="informacion">Información</button>
     <div class="flex flex-col gap-7">
       <form class="flex flex-row gap-4">
         <label>Pick a movie:</label>
