@@ -1,16 +1,15 @@
 <script>
     export default { 
-        props:{
-            currentMoviePrice:Number,
-            seatsData:Object
-        },
         data(){
       return{
-        seatsSelected:[],
         totalPrice:0,
         numberSeatSelected:0,
-        arrayOfSeats:this.seatsData
       }
+    },
+    computed:{
+      arrayOfSeats(){
+        return this.$store.state.seatsData
+      },
     },
     created(){ 
       if(localStorage.getItem('seatsLstorage')!=null){
@@ -38,6 +37,11 @@
       }
    },
     methods:{
+      methods:{
+    informacion(){
+      console.log(this.movieSelected)
+    }
+   },
       movieChanged(){
         this.totalPrice=this.currentMoviePrice*this.numberSeatSelected
       },
@@ -67,4 +71,6 @@
       </div>
     </div>
     <p class=" text-lg">You have selected <span class="text-blueSpace">{{numberSeatSelected}}</span> seats for a price of $<span class="text-blueSpace">{{totalPrice}}</span></p>
+
+    <button @click="informacion">Información</button>
     </template>

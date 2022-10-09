@@ -1,41 +1,37 @@
 <script>
-    export default { 
-      emits:['change'],
-        props:{
-            movieData:Object
-        },
-        data(){
-      return{
-        movieDataprop:this.movieData,
-        movieSelected:''
-      }
-    },
-    created(){
+    export default {
+  created(){
       if(localStorage.getItem('movieSelected')!=null){
         this.movieSelected=JSON.parse(localStorage.getItem('Movie'));
         this.handleClick()
       }
     },
-    methods:{
-     handleClick(){
-      console.log(this.movieSelected)
-      let priceSelected = this.movieSelected.TicketPrice
-      this.$emit('change', priceSelected)
-     }
-  },
   watch:{
     movieSelected:function(){
       localStorage.setItem('Movie', JSON.stringify(this.movieSelected));
     }
   },
+  computed:{
+    moviesData(){
+        return this.$store.state.moviesData
+      },
+    movieSelected:{
+      get(){
+        return this.$store.state.movieSelected
+      },
+      set(newValue){
+        this.$store.commit('setMovieSelected', newValue)
+      }
+    }  
+  }
 }
 </script>
     <template>
     <div class="flex flex-col gap-7">
       <form class="flex flex-row gap-4">
         <label>Pick a movie:</label>
-        <select class="text-black rounded-md" @change="handleClick" v-model="movieSelected">
-        <option v-for="data in movieDataprop" :value="data" :key="data.id">{{`${data.Name} (${data.TicketPrice}$)`}}</option>
+        <select class="text-black rounded-md" v-model="movieSelected">
+        <option v-for="data in moviesData" :value="data" :key="data.id">{{`${data.Name} (${data.TicketPrice}$)`}}</option>
         </select>
       </form>
       <ul class="flex flex-row justify-center gap-4 bg-showcase rounded-md py-2 pl-3 pr-3">
