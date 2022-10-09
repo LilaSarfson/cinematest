@@ -1,18 +1,18 @@
 <script>
     export default {
     created(){
-      if(localStorage.getItem('movieSelected')!=null){
-        this.movieSelected=JSON.parse(localStorage.getItem('Movie'));
+      if(localStorage.getItem('MovieSelected')!=null){
+        this.movieSelected=JSON.parse(localStorage.getItem('MovieSelected'));
       }
     },
   watch:{
     movieSelected:function(){
-      localStorage.setItem('Movie', JSON.stringify(this.movieSelected));
+      localStorage.setItem('MovieSelected', JSON.stringify(this.movieSelected));
     }
   },
   computed:{
     moviesData(){
-        return this.$store.state.moviesData
+        return this.$store.state.data[0].Movie
       },
     movieSelected:{
       get(){
@@ -45,5 +45,4 @@
       <li class="flex flex-row gap-1 items-center"><div class="bg-blueSpace h-smallseat w-4  rounded-t-xl"></div><span>Selected</span></li>
       </ul>
     </div>
-
     </template>

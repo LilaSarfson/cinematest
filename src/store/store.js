@@ -3,9 +3,8 @@ import data from '../data/data.json'
 
 export default createStore({
 state: { 
-    moviesData:data[0].Movie,
+    data:data,
     movieSelected:'',
-    seatsData:data[0].asientosTotales,
     seatsSelected:[],
     numberSeatSelected:0,
     totalPrice:0

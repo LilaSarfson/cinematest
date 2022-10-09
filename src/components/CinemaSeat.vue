@@ -3,7 +3,7 @@
     export default { 
     computed:{
       arrayOfSeats(){
-        return this.$store.state.seatsData
+        return this.$store.state.data[0].asientosTotales
       },
       currentMoviePrice(){
           return this.$store.state.movieSelected.TicketPrice
@@ -85,6 +85,5 @@
       </div>
     </div>
     <p class=" text-lg">You have selected <span class="text-blueSpace">{{numberSeatSelected}}</span> seats for a price of $<span class="text-blueSpace">{{currentMoviePrice && numberSeatSelected ? totalPrice : 0}}</span></p>
-
     <button @click="informacion">Información</button>
     </template>
