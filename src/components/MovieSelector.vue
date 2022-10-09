@@ -21,11 +21,11 @@
       set(newValue){
         this.$store.commit('setMovieSelected', newValue)
       }
-    }  
+    }
   },
   methods:{
     informacion(){
-      console.log(this.movieSelected.TicketPrice)
+      console.log(this.currentMoviePrice)
     }
   }
 }
