@@ -3,11 +3,6 @@
     import MovieSelector from './components/MovieSelector.vue'
     import CinemaSeat from './components/CinemaSeat.vue'
   </script>
-
-  <script>
-  export default {
-}
-  </script>
   <template>
     <div class="flex flex-col items-center gap-4">
       <MovieSelector/>

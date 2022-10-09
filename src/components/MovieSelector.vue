@@ -1,33 +1,25 @@
 <script>
-import {computed} from 'vue'
+import {computed, watch} from 'vue'
 import {useStore} from 'vuex'
     export default {
       setup(){
         const store = useStore(); 
-
-        // VARIBLES 
+        // VARIABLES 
         const moviesData = computed(()=> store.state.data[0].Movie,)
         const movieSelected = computed({
           get(){ return store.state.movieSelected},
           set(newValue){store.commit('setMovieSelected', newValue)}
         })
-        
         // LOCALSTORAGE
         if(localStorage.getItem('MovieSelected')!=null){
-        movieSelected.value=JSON.parse(localStorage.getItem('MovieSelected'));
-      }
+        movieSelected.value=JSON.parse(localStorage.getItem('MovieSelected'));}
+        watch(()=>movieSelected.value, function(){ localStorage.setItem('MovieSelected', JSON.stringify(movieSelected.value))})
         return{
           moviesData,
           movieSelected
         }
-
-      },
-  watch:{
-    movieSelected:function(){
-      localStorage.setItem('MovieSelected', JSON.stringify(this.movieSelected));
+      }
     }
-  }
-}
 </script>
     <template>
     <div class="flex flex-col gap-7">
