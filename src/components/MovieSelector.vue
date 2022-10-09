@@ -5,23 +5,23 @@ import {useStore} from 'vuex'
       setup(){
         const store = useStore(); 
 
+        // VARIBLES 
         const moviesData = computed(()=> store.state.data[0].Movie,)
         const movieSelected = computed({
-          get(){ return store.state.movieSelected },
+          get(){ return store.state.movieSelected},
           set(newValue){store.commit('setMovieSelected', newValue)}
         })
-
+        
+        // LOCALSTORAGE
+        if(localStorage.getItem('MovieSelected')!=null){
+        movieSelected.value=JSON.parse(localStorage.getItem('MovieSelected'));
+      }
         return{
           moviesData,
           movieSelected
         }
 
       },
-    created(){
-      if(localStorage.getItem('MovieSelected')!=null){
-        this.movieSelected=JSON.parse(localStorage.getItem('MovieSelected'));
-      }
-    },
   watch:{
     movieSelected:function(){
       localStorage.setItem('MovieSelected', JSON.stringify(this.movieSelected));

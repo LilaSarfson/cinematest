@@ -1,16 +1,29 @@
 <script>
-import {ref, computed} from 'vue'
+import {ref, computed, watch} from 'vue'
 import {useStore} from 'vuex'
     export default { 
       setup(){
       const store = useStore(); 
-
       let numberSeatSelected = ref(0);
-      let seatsSelected = ref(0);
+      let seatsSelected = ref([]);
       let totalPrice = ref(0);
-
       const arrayOfSeats = computed(()=> store.state.data[0].asientosTotales)
       const currentMoviePrice = computed(()=> store.state.movieSelected.TicketPrice)
+      // LOCALSTORAGE
+      if(localStorage.getItem('seatsLstorage')!=null){
+      seatsSelected.value=JSON.parse(localStorage.getItem('seatsLstorage'))
+      seatsSelected.value.forEach((seat) => { 
+      let positionArray = seat.id;
+      arrayOfSeats.value.splice(positionArray, 1, seat)
+      })}
+
+      if(localStorage.getItem('Price')!=null){
+        totalPrice.value=+localStorage.getItem('Price')}
+      watch(()=>totalPrice.value, function(){localStorage.setItem('Price', totalPrice.value);})
+
+      if(localStorage.getItem('numberSeats')!=null){
+        numberSeatSelected.value=+localStorage.getItem('numberSeats')}
+      watch(()=>numberSeatSelected.value, function(){ localStorage.setItem('numberSeats', numberSeatSelected.value)})
       
       return{
         numberSeatSelected,
@@ -19,34 +32,15 @@ import {useStore} from 'vuex'
         arrayOfSeats,
         currentMoviePrice
       }
-
-      },
-    created(){ 
-      if(localStorage.getItem('seatsLstorage')!=null){
-      this.seatsSelected=JSON.parse(localStorage.getItem('seatsLstorage'))
-      this.seatsSelected.forEach((seat) => { 
-      let positionArray = seat.id;
-      this.arrayOfSeats.splice(positionArray, 1, seat)
-      });
-      if(localStorage.getItem('Price')!=null){
-        this.totalPrice=+localStorage.getItem('Price')
-      }
-      if(localStorage.getItem('numberSeats')!=null){
-        this.numberSeatSelected=+localStorage.getItem('numberSeats')
-      }
-    }
     },
     watch:{
       currentMoviePrice:function() {
       this.movieChanged()},
-      totalPrice:function(){
-        localStorage.setItem('Price', JSON.stringify(this.totalPrice));
-      },
-      numberSeatSelected:function(){
-        localStorage.setItem('numberSeats', JSON.stringify(this.numberSeatSelected))
-      }
    },
     methods:{
+      informacion(){
+        console.log(this.totalPrice)
+      },
       movieChanged(){
         this.totalPrice=this.currentMoviePrice*this.numberSeatSelected
       },
@@ -67,7 +61,7 @@ import {useStore} from 'vuex'
     }
     localStorage.setItem('seatsLstorage', JSON.stringify(this.seatsSelected))
   },
-}
+  }
 }
 </script>
     <template>
@@ -76,4 +70,5 @@ import {useStore} from 'vuex'
       </div>
     </div>
     <p class=" text-lg">You have selected <span class="text-blueSpace">{{numberSeatSelected}}</span> seats for a price of $<span class="text-blueSpace">{{currentMoviePrice && numberSeatSelected ? totalPrice : 0}}</span></p>
+    <button @click="informacion">Información</button>
     </template>
