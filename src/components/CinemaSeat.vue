@@ -10,12 +10,12 @@ import {useStore} from 'vuex'
       const arrayOfSeats = computed(()=> store.state.data[0].asientosTotales)
       const currentMoviePrice = computed(()=> store.state.movieSelected.TicketPrice)
       // LOCALSTORAGE
-       if(localStorage.getItem('seatsLstorage')!=null){
+      if(localStorage.getItem('seatsLstorage')!=null){
       seatsSelected.value=JSON.parse(localStorage.getItem('seatsLstorage'));
-       seatsSelected.value.forEach((seat) => { 
-       let positionArray = seat.id;
+      seatsSelected.value.forEach((seat) => { 
+      let positionArray = seat.id;
        arrayOfSeats.value.splice(positionArray, 1, seat)
-       })}
+        })}
        
       if(localStorage.getItem('Price')!=null){
         totalPrice.value=+localStorage.getItem('Price')}
@@ -23,25 +23,25 @@ import {useStore} from 'vuex'
 
       if(localStorage.getItem('numberSeats')!=null){
         numberSeatSelected.value=+localStorage.getItem('numberSeats')}
-      watch(()=>numberSeatSelected.value, function(){ localStorage.setItem('numberSeats', numberSeatSelected.value)})
-
+      watch(()=>numberSeatSelected.value, function(){ localStorage.setItem('numberSeats', numberSeatSelected.value),
+      localStorage.setItem('seatsLstorage', JSON.stringify(seatsSelected.value))
+    })
       watch(()=>currentMoviePrice.value, function(){movieChanged()})
       // METHODS
       function informacion(){
-        console.log(seatsSelected)
+        console.log(seatsSelected.value)
       }
       function movieChanged(){
         totalPrice.value=currentMoviePrice.value*numberSeatSelected.value
       }
       function takeSeat(id){
       let allSeats = arrayOfSeats.value[id];
-      localStorage.setItem('seatsLstorage', JSON.stringify(seatsSelected.value))
       allSeats.selected= !allSeats.selected;    
       if(allSeats.selected===false && allSeats.occupied===false ){
       numberSeatSelected.value--;
         totalPrice.value= totalPrice.value-currentMoviePrice.value
         if(seatsSelected.value.includes(allSeats))
-        {seatsSelected = seatsSelected.value.filter((seat)=> seat !== allSeats)}
+        {seatsSelected.value = seatsSelected.value.filter((seat)=> seat !== allSeats)}
       }
       else if (allSeats.selected===true && allSeats.occupied===false){
         numberSeatSelected.value++;
