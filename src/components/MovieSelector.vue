@@ -6,9 +6,9 @@ import useStorage from '../composables/useStorage'
       setup(){
         const {movieSelected, setMovie} = SelectaMovie();
         const{moviesData}= getData();
-        const{localObject}= useStorage('MovieSelected',movieSelected );
+        const{localObject}= useStorage();
         // // LOCALSTORAGE
-        localObject();
+        localObject('MovieSelected', movieSelected);
         return{
           moviesData,
           movieSelected,
@@ -18,7 +18,6 @@ import useStorage from '../composables/useStorage'
     }
 </script>
 <template>
-      <button @click="info">Info</button>
     <div class="flex flex-col gap-7">
       <form class="flex flex-row gap-4">
         <label>Pick a movie:</label>

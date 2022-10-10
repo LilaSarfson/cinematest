@@ -1,22 +1,26 @@
 
-export default function useStorage(key, value){
-    function localNumbers(){
+// import {watch} from 'vue'
+export default function useStorage(){
+    function localNumbers(key, value){
         if(localStorage.getItem(key)!=null){
             value.value=+localStorage.getItem(key)}
     }
-    function localObject(){
+    function localObject(key, variable){
         if(localStorage.getItem(key)!=null){
-            value.value=JSON.parse(localStorage.getItem(key));}
+            variable.value=JSON.parse(localStorage.getItem(key));
+    }}
+    function localObject2(key, variable, array){
+        if(localStorage.getItem(key)!=null){
+            variable.value=JSON.parse(localStorage.getItem(key));
+            variable.value.forEach((seat) => { 
+            let positionArray = seat.id;
+            array.value.splice(positionArray, 1, seat)})}
     }
-    return{localNumbers, localObject}
+    // function watchIt(variable, key, wariable){
+    // watch(()=>wariable.value, function(){ 
+    // localStorage.setItem(key, variable.value)})
+    // }
+    return{localNumbers, localObject, localObject2}
+    
 }
 
-// Funciona pero necesito que sea genérico para hacerlo con todas
-// let storeVal =(localStorage.getItem(key))
-// let val = ref(storeVal)
-
-// watch(val, ()=> write())
-
-// function write (){
-//     localStorage.setItem(key, JSON.stringify(val.value))
-// }

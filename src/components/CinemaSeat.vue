@@ -9,23 +9,15 @@ import useStorage from '../composables/useStorage'
         const {arrayOfSeats, currentMoviePrice}= getData();
         const{totalPrice,numberSeatSelected}=getTotalPrice(currentMoviePrice);
         const {seatsSelected,takeSeat}= checkingSeats(arrayOfSeats,totalPrice,currentMoviePrice,numberSeatSelected)
-        const {localNumbers}= useStorage('Price', totalPrice);
+        const {localNumbers, localObject2}= useStorage(arrayOfSeats);
       // LOCALSTORAGE
-      if(localStorage.getItem('seatsLstorage')!=null){
-      seatsSelected.value=JSON.parse(localStorage.getItem('seatsLstorage'));
-      seatsSelected.value.forEach((seat) => { 
-      let positionArray = seat.id;
-       arrayOfSeats.value.splice(positionArray, 1, seat)
-        })}
-      localNumbers();
-      // if(localStorage.getItem('Price')!=null){
-      //   totalPrice.value=+localStorage.getItem('Price')}
-
-      if(localStorage.getItem('numberSeats')!=null){
-      numberSeatSelected.value=+localStorage.getItem('numberSeats')}
-      watch(()=>numberSeatSelected.value, function(){ localStorage.setItem('numberSeats', numberSeatSelected.value),
+      localObject2('seatsLstorage',seatsSelected, arrayOfSeats);
+      localNumbers('Price', totalPrice);
+      localNumbers('numberSeats', numberSeatSelected);
+      watch(()=>numberSeatSelected.value, function(){ 
+      localStorage.setItem('numberSeats', numberSeatSelected.value),
       localStorage.setItem('seatsLstorage', JSON.stringify(seatsSelected.value))
-    })
+      });
       return{
         numberSeatSelected,
         totalPrice,
