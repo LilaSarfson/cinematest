@@ -1,0 +1,11 @@
+import {ref,watch} from 'vue'
+export default function getTotalPrice (currentMoviePrice){
+    let numberSeatSelected = ref(0);
+    let totalPrice = ref(0);
+    function totalPriceChanged(){
+        totalPrice.value=currentMoviePrice.value*numberSeatSelected.value
+      }
+    watch(()=>totalPrice.value, function(){localStorage.setItem('Price', totalPrice.value);})
+    watch(()=>currentMoviePrice.value, function(){totalPriceChanged()})
+    return{totalPrice, numberSeatSelected}
+}

@@ -1,14 +1,13 @@
 <script>
-import {ref, computed, watch} from 'vue'
-import {useStore} from 'vuex'
+import {watch} from 'vue'
+import getData from '../composables/getData'
+import getTotalPrice from '../composables/getTotalPrice'
+import checkingSeats from '../composables/checkingSeats'
     export default { 
       setup(){
-      const store = useStore(); 
-      let numberSeatSelected = ref(0);
-      let seatsSelected = ref([]);
-      let totalPrice = ref(0);
-      const arrayOfSeats = computed(()=> store.state.data[0].asientosTotales)
-      const currentMoviePrice = computed(()=> store.state.movieSelected.TicketPrice)
+        const {arrayOfSeats, currentMoviePrice}= getData();
+        const{totalPrice,numberSeatSelected}=getTotalPrice(currentMoviePrice);
+        const {seatsSelected,takeSeat}= checkingSeats(arrayOfSeats,totalPrice,currentMoviePrice,numberSeatSelected)
       // LOCALSTORAGE
       if(localStorage.getItem('seatsLstorage')!=null){
       seatsSelected.value=JSON.parse(localStorage.getItem('seatsLstorage'));
@@ -19,45 +18,17 @@ import {useStore} from 'vuex'
        
       if(localStorage.getItem('Price')!=null){
         totalPrice.value=+localStorage.getItem('Price')}
-      watch(()=>totalPrice.value, function(){localStorage.setItem('Price', totalPrice.value);})
 
       if(localStorage.getItem('numberSeats')!=null){
-        numberSeatSelected.value=+localStorage.getItem('numberSeats')}
+      numberSeatSelected.value=+localStorage.getItem('numberSeats')}
       watch(()=>numberSeatSelected.value, function(){ localStorage.setItem('numberSeats', numberSeatSelected.value),
       localStorage.setItem('seatsLstorage', JSON.stringify(seatsSelected.value))
     })
-      watch(()=>currentMoviePrice.value, function(){movieChanged()})
-      // METHODS
-      function informacion(){
-        console.log(seatsSelected.value)
-      }
-      function movieChanged(){
-        totalPrice.value=currentMoviePrice.value*numberSeatSelected.value
-      }
-      function takeSeat(id){
-      let allSeats = arrayOfSeats.value[id];
-      allSeats.selected= !allSeats.selected;    
-      if(allSeats.selected===false && allSeats.occupied===false ){
-      numberSeatSelected.value--;
-        totalPrice.value= totalPrice.value-currentMoviePrice.value
-        if(seatsSelected.value.includes(allSeats))
-        {seatsSelected.value = seatsSelected.value.filter((seat)=> seat !== allSeats)}
-      }
-      else if (allSeats.selected===true && allSeats.occupied===false){
-        numberSeatSelected.value++;
-        totalPrice.value=currentMoviePrice.value*numberSeatSelected.value;
-        if(!seatsSelected.value.includes(allSeats))
-        {seatsSelected.value.push(allSeats)}
-      }
-  }
       return{
         numberSeatSelected,
-        seatsSelected,
         totalPrice,
         arrayOfSeats,
         currentMoviePrice,
-        informacion,
-        movieChanged,
         takeSeat
       }
     }

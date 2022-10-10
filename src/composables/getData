@@ -1,0 +1,11 @@
+
+import {computed} from 'vue'
+import {useStore} from 'vuex'
+
+export default function getData (){
+    const store = useStore();
+    const moviesData = computed(()=> store.state.data[0].Movie,)
+    const arrayOfSeats = computed(()=> store.state.data[0].asientosTotales)
+    const currentMoviePrice = computed(()=> store.state.movieSelected.TicketPrice)
+    return{moviesData, arrayOfSeats, currentMoviePrice}
+}

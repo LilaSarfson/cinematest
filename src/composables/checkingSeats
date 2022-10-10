@@ -1,0 +1,26 @@
+import {ref} from 'vue'
+
+export default function checkingSeats (arrayOfSeats, totalPrice, currentMoviePrice,numberSeatSelected ){
+        let seatsSelected = ref([]);
+        function DeleteSeat(CheckVal, allValues){
+            if(CheckVal.includes(allValues)){CheckVal=CheckVal.filter((seat)=>seat !== allValues)}
+        }
+        function AddSeat(CheckVal, allValues){
+            if(!CheckVal.includes(allValues)){CheckVal.push(allValues)}
+        }
+        function takeSeat(id){
+            let allSeats = arrayOfSeats.value[id];
+            allSeats.selected= !allSeats.selected;    
+            if(allSeats.selected===false && allSeats.occupied===false ){
+            numberSeatSelected.value--;
+            totalPrice.value= totalPrice.value-currentMoviePrice.value
+            DeleteSeat(seatsSelected.value, allSeats);
+            }
+            else if (allSeats.selected===true && allSeats.occupied===false){
+            numberSeatSelected.value++;
+            totalPrice.value=currentMoviePrice.value*numberSeatSelected.value;
+            AddSeat(seatsSelected.value, allSeats);
+            }
+    }
+    return{seatsSelected, takeSeat}
+}

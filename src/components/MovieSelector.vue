@@ -1,22 +1,16 @@
 <script>
-import {computed, watch} from 'vue'
-import {useStore} from 'vuex'
+import SelectaMovie from '../composables/SelectaMovie'
+import getData from '../composables/getData'
     export default {
       setup(){
-        const store = useStore(); 
-        // VARIABLES 
-        const moviesData = computed(()=> store.state.data[0].Movie,)
-        const movieSelected = computed({
-          get(){ return store.state.movieSelected},
-          set(newValue){store.commit('setMovieSelected', newValue)}
-        })
-        // LOCALSTORAGE
+        const {movieSelected} = SelectaMovie();
+        const{moviesData}= getData();
+        // // LOCALSTORAGE
         if(localStorage.getItem('MovieSelected')!=null){
         movieSelected.value=JSON.parse(localStorage.getItem('MovieSelected'));}
-        watch(()=>movieSelected.value, function(){ localStorage.setItem('MovieSelected', JSON.stringify(movieSelected.value))})
         return{
           moviesData,
-          movieSelected
+          movieSelected,
         }
       }
     }

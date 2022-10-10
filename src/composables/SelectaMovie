@@ -1,0 +1,11 @@
+import {computed, watch} from 'vue'
+import { useStore } from 'vuex'
+export default function SelectAMovie (){
+    const store = useStore();
+    const movieSelected = computed({
+          get(){ return store.state.movieSelected},
+          set(newValue){store.commit('setMovieSelected', newValue)}
+        })
+        watch(()=>movieSelected.value, function(){ localStorage.setItem('MovieSelected', JSON.stringify(movieSelected.value))})
+        return{movieSelected}
+}
