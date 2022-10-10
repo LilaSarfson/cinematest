@@ -1,22 +1,17 @@
 <script>
 import SelectaMovie from '../composables/SelectaMovie'
 import getData from '../composables/getData'
-// import useStorage from '../composables/useStorage'
+import useStorage from '../composables/useStorage'
     export default {
       setup(){
         const {movieSelected, setMovie} = SelectaMovie();
         const{moviesData}= getData();
+        const{localObject}= useStorage('MovieSelected',movieSelected );
         // // LOCALSTORAGE
-        // let movie = useStorage('MovieSelected')
-        if(localStorage.getItem('MovieSelected')!=null){
-        movieSelected.value=JSON.parse(localStorage.getItem('MovieSelected'));}
-        function info (){
-          // console.log(movie.value)
-        }
+        localObject();
         return{
           moviesData,
           movieSelected,
-          info,
           setMovie
         }
       }

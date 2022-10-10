@@ -3,12 +3,13 @@ import {watch} from 'vue'
 import getData from '../composables/getData'
 import getTotalPrice from '../composables/getTotalPrice'
 import checkingSeats from '../composables/checkingSeats'
-// import useStorage from '../composables/useStorage'
+import useStorage from '../composables/useStorage'
     export default { 
       setup(){
         const {arrayOfSeats, currentMoviePrice}= getData();
         const{totalPrice,numberSeatSelected}=getTotalPrice(currentMoviePrice);
         const {seatsSelected,takeSeat}= checkingSeats(arrayOfSeats,totalPrice,currentMoviePrice,numberSeatSelected)
+        const {localNumbers}= useStorage('Price', totalPrice);
       // LOCALSTORAGE
       if(localStorage.getItem('seatsLstorage')!=null){
       seatsSelected.value=JSON.parse(localStorage.getItem('seatsLstorage'));
@@ -16,9 +17,9 @@ import checkingSeats from '../composables/checkingSeats'
       let positionArray = seat.id;
        arrayOfSeats.value.splice(positionArray, 1, seat)
         })}
-       
-      if(localStorage.getItem('Price')!=null){
-        totalPrice.value=+localStorage.getItem('Price')}
+      localNumbers();
+      // if(localStorage.getItem('Price')!=null){
+      //   totalPrice.value=+localStorage.getItem('Price')}
 
       if(localStorage.getItem('numberSeats')!=null){
       numberSeatSelected.value=+localStorage.getItem('numberSeats')}
