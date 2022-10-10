@@ -3,6 +3,7 @@ import {watch} from 'vue'
 import getData from '../composables/getData'
 import getTotalPrice from '../composables/getTotalPrice'
 import checkingSeats from '../composables/checkingSeats'
+// import useStorage from '../composables/useStorage'
     export default { 
       setup(){
         const {arrayOfSeats, currentMoviePrice}= getData();
@@ -40,5 +41,4 @@ import checkingSeats from '../composables/checkingSeats'
       </div>
     </div>
     <p class=" text-lg">You have selected <span class="text-blueSpace">{{numberSeatSelected}}</span> seats for a price of $<span class="text-blueSpace">{{currentMoviePrice && numberSeatSelected ? totalPrice : 0}}</span></p>
-    <button @click="informacion">Información</button>
     </template>

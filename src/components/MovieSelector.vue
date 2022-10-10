@@ -1,25 +1,33 @@
 <script>
 import SelectaMovie from '../composables/SelectaMovie'
 import getData from '../composables/getData'
+// import useStorage from '../composables/useStorage'
     export default {
       setup(){
-        const {movieSelected} = SelectaMovie();
+        const {movieSelected, setMovie} = SelectaMovie();
         const{moviesData}= getData();
         // // LOCALSTORAGE
+        // let movie = useStorage('MovieSelected')
         if(localStorage.getItem('MovieSelected')!=null){
         movieSelected.value=JSON.parse(localStorage.getItem('MovieSelected'));}
+        function info (){
+          // console.log(movie.value)
+        }
         return{
           moviesData,
           movieSelected,
+          info,
+          setMovie
         }
       }
     }
 </script>
-    <template>
+<template>
+      <button @click="info">Info</button>
     <div class="flex flex-col gap-7">
       <form class="flex flex-row gap-4">
         <label>Pick a movie:</label>
-        <select class="text-black rounded-md" v-model="movieSelected">
+        <select @change="setMovie" class="text-black rounded-md" v-model="movieSelected">
         <option v-for="data in moviesData" :value="data" :key="data.id">{{`${data.Name} (${data.TicketPrice}$)`}}</option>
         </select>
       </form>
