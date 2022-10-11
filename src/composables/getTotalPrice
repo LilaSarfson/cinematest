@@ -5,7 +5,6 @@ export default function getTotalPrice (currentMoviePrice){
     function totalPriceChanged(){
         totalPrice.value=currentMoviePrice.value*numberSeatSelected.value
       }
-    watch(()=>totalPrice.value, function(){localStorage.setItem('Price', totalPrice.value);})
     watch(()=>currentMoviePrice.value, function(){totalPriceChanged()})
     return{totalPrice, numberSeatSelected}
 }

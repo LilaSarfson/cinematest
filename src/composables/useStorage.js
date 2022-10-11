@@ -1,26 +1,26 @@
 
-// import {watch} from 'vue'
+import {watch} from 'vue'
 export default function useStorage(){
-    function localNumbers(key, value){
+    function watchIt(key,variable, wariable){
+    watch(()=>wariable.value, function(){ 
+    localStorage.setItem(key, JSON.stringify(variable.value))})
+   }
+    function localNumbers(key, value, wariable){
         if(localStorage.getItem(key)!=null){
             value.value=+localStorage.getItem(key)}
+        watchIt(key, value, wariable)    
     }
-    function localObject(key, variable){
+    function localObject(key, variable,array, wariable){
         if(localStorage.getItem(key)!=null){
             variable.value=JSON.parse(localStorage.getItem(key));
-    }}
-    function localObject2(key, variable, array){
-        if(localStorage.getItem(key)!=null){
-            variable.value=JSON.parse(localStorage.getItem(key));
+            if(key === 'seatsLstorage'){
             variable.value.forEach((seat) => { 
             let positionArray = seat.id;
             array.value.splice(positionArray, 1, seat)})}
+        }
+        watchIt(key, variable, wariable)
     }
-    // function watchIt(variable, key, wariable){
-    // watch(()=>wariable.value, function(){ 
-    // localStorage.setItem(key, variable.value)})
-    // }
-    return{localNumbers, localObject, localObject2}
+    return{localNumbers, localObject}
     
 }
 

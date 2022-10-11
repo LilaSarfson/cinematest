@@ -8,7 +8,7 @@ import useStorage from '../composables/useStorage'
         const{moviesData}= getData();
         const{localObject}= useStorage();
         // // LOCALSTORAGE
-        localObject('MovieSelected', movieSelected);
+        localObject('MovieSelected', movieSelected, null, movieSelected);
         return{
           moviesData,
           movieSelected,
