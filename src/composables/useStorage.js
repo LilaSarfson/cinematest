@@ -5,12 +5,12 @@ export default function useStorage(){
     watch(()=>wariable.value, function(){ 
     localStorage.setItem(key, JSON.stringify(variable.value))})
    }
-    function localNumbers(key, value, wariable){
+    function localStorageNum(key, value, wariable){
         if(localStorage.getItem(key)!=null){
             value.value=+localStorage.getItem(key)}
         watchIt(key, value, wariable)    
     }
-    function localObject(key, variable,array, wariable){
+    function localStorageObj(key, variable,array, wariable){
         if(localStorage.getItem(key)!=null){
             variable.value=JSON.parse(localStorage.getItem(key));
             if(key === 'seatsLstorage'){
@@ -20,6 +20,6 @@ export default function useStorage(){
         }
         watchIt(key, variable, wariable)
     }
-    return{localNumbers, localObject}
+    return{localStorageNum, localStorageObj}
     
 }

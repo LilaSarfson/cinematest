@@ -1,10 +1,10 @@
 <script>
-import SelectaMovie from '../composables/SelectaMovie'
+import selectaMovie from '../composables/selectaMovie'
 import getData from '../composables/getData'
     export default {
       setup(){
         const{moviesData}= getData();
-        const {movieSelected} = SelectaMovie();
+        const {movieSelected} = selectaMovie();
         return{
           moviesData,
           movieSelected,

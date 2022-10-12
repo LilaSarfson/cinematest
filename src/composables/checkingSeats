@@ -22,7 +22,7 @@ export default function checkingSeats (arrayOfSeats, totalPrice, currentMoviePri
             AddSeat(seatsSelected.value, allSeats);
             }
         }
-        const {localObject}= useStorage();
-        localObject('seatsLstorage',seatsSelected, arrayOfSeats, numberSeatSelected);
+        const {localStorageObj}= useStorage();
+        localStorageObj('seatsLstorage',seatsSelected, arrayOfSeats, numberSeatSelected);
     return{takeSeat}
 }

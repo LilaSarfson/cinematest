@@ -1,13 +1,14 @@
-import {ref,watch} from 'vue'
+import {ref, watch} from 'vue'
 import useStorage from '../composables/useStorage'
 export default function getTotalPrice (currentMoviePrice){
     let numberSeatSelected = ref(0);
     let totalPrice = ref(0);
     function totalPriceChanged(){
-        totalPrice.value=currentMoviePrice.value*numberSeatSelected.value}
+        totalPrice.value=currentMoviePrice.value*numberSeatSelected.value
+      }
     watch(()=>currentMoviePrice.value, function(){totalPriceChanged()})
-    const {localNumbers}= useStorage(null);
-    localNumbers('Price', totalPrice, totalPrice);
-    localNumbers('numberSeats', numberSeatSelected, numberSeatSelected);
-    return{totalPrice, numberSeatSelected}
+    const {localStorageNum}= useStorage(null);
+    localStorageNum('Price', totalPrice, totalPrice);
+    localStorageNum('numberSeats', numberSeatSelected, numberSeatSelected);
+    return{totalPrice, numberSeatSelected, totalPriceChanged}
 }
