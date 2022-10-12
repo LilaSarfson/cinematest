@@ -23,4 +23,3 @@ export default function useStorage(){
     return{localNumbers, localObject}
     
 }
-

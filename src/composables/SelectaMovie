@@ -1,9 +1,12 @@
 import {computed} from 'vue'
 import { useStore } from 'vuex'
+import useStorage from '../composables/useStorage'
 export default function SelectAMovie (){
-    const store = useStore();
-    const movieSelected = computed({
-          get(){ return store.state.movieSelected},
-          set(newValue){store.commit('setMovieSelected', newValue)}})      
-        return{movieSelected}
+  const store = useStore();
+  const movieSelected = computed({
+    get(){ return store.state.movieSelected},
+    set(newValue){store.commit('setMovieSelected', newValue)}})      
+  const{localObject}= useStorage();
+  localObject('MovieSelected', movieSelected, null, movieSelected);
+  return{movieSelected}
 }

@@ -1,5 +1,5 @@
 import {ref} from 'vue'
-
+import useStorage from '../composables/useStorage'
 export default function checkingSeats (arrayOfSeats, totalPrice, currentMoviePrice,numberSeatSelected ){
         let seatsSelected = ref([]);
         function DeleteSeat(CheckVal, allValues){
@@ -21,6 +21,8 @@ export default function checkingSeats (arrayOfSeats, totalPrice, currentMoviePri
             totalPrice.value=currentMoviePrice.value*numberSeatSelected.value;
             AddSeat(seatsSelected.value, allSeats);
             }
-    }
-    return{seatsSelected, takeSeat}
+        }
+        const {localObject}= useStorage();
+        localObject('seatsLstorage',seatsSelected, arrayOfSeats, numberSeatSelected);
+    return{takeSeat}
 }

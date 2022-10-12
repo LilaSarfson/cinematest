@@ -5,7 +5,6 @@ export default createStore({
 state: { 
     data:data,
     movieSelected:'',
-
 }, mutations: {
    setMovieSelected(state, newValue){
     state.movieSelected=newValue
