@@ -12,10 +12,7 @@ import useStorage from '../composables/useStorage'
       // LOCALSTORAGE
       localObject('seatsLstorage',seatsSelected, arrayOfSeats, numberSeatSelected);
       localNumbers('Price', totalPrice, totalPrice);
-      localNumbers('numberSeats', numberSeatSelected, numberSeatSelected);      
-      // watch(()=>numberSeatSelected.value, function(){ 
-      // localStorage.setItem('seatsLstorage', JSON.stringify(seatsSelected.value))
-      // });
+      localNumbers('numberSeats', numberSeatSelected, numberSeatSelected);
       return{
         numberSeatSelected,
         totalPrice,

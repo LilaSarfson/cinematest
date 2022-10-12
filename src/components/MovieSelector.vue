@@ -4,7 +4,7 @@ import getData from '../composables/getData'
 import useStorage from '../composables/useStorage'
     export default {
       setup(){
-        const {movieSelected, setMovie} = SelectaMovie();
+        const {movieSelected} = SelectaMovie();
         const{moviesData}= getData();
         const{localObject}= useStorage();
         // // LOCALSTORAGE
@@ -12,7 +12,6 @@ import useStorage from '../composables/useStorage'
         return{
           moviesData,
           movieSelected,
-          setMovie
         }
       }
     }
@@ -21,7 +20,7 @@ import useStorage from '../composables/useStorage'
     <div class="flex flex-col gap-7">
       <form class="flex flex-row gap-4">
         <label>Pick a movie:</label>
-        <select @change="setMovie" class="text-black rounded-md" v-model="movieSelected">
+        <select class="text-black rounded-md" v-model="movieSelected">
         <option v-for="data in moviesData" :value="data" :key="data.id">{{`${data.Name} (${data.TicketPrice}$)`}}</option>
         </select>
       </form>
